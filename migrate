@@ -1,0 +1,22 @@
+#!/bin/bash -e
+
+extension_dir=$1
+
+if [ -z "$extension_dir" ]
+then
+	echo "Pfad zur Extension angeben"
+	exit
+fi
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+files=`find "$extension_dir" -name "*.php"`
+
+for line in `cat $script_dir/*.txt | egrep -v '^#'`
+do
+	from=`echo $line | sed -e 's/!.*//'`
+	to=`echo $line | sed -e 's/.*!//; s!\\\!\\\\\\\!g;'`
+
+	echo Replacing $line
+	perl -i -pe "s/'$from'/$to::class/g; s/\\$from/$to/g; s/$from/$to/g" $files
+done
