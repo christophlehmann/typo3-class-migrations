@@ -18,5 +18,5 @@ do
 	to=`echo $line | sed -e 's/.*!//; s!\\\!\\\\\\\!g;'`
 
 	echo Replacing $line
-	perl -i -pe "s/'$from'/$to::class/g; s/\\$from/$to/g; s/$from/$to/g" $files
+	perl -i -pe "s/'$from'/$to::class/g; s/(\s|\()\\$from(\s|\))/\1$to\2/g; s/(\s|\()$from(\s|\))/\1$to\2/g" $files
 done
