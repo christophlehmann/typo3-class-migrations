@@ -30,7 +30,7 @@ class classMigration {
 				continue;
 			}
 			$pieces = explode('!', $line);
-			$$this->otherReplacements[$pieces[0]] = $pieces[1];
+			$this->otherReplacements[$pieces[0]] = $pieces[1];
 		};
 
 		foreach ($files as $file) {
