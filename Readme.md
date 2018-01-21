@@ -22,7 +22,6 @@
 ```
 -$another = $this->objectManater->create('AnyKnownClass')
 +$another = $this->objectManater->get(AnyKnownClass::class)
-
 ```
 
 ## Usage
