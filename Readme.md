@@ -4,6 +4,8 @@
 * Rebuild Tx_ classes to use namespaces
 * Replace others, see `other-replacements.txt`
 * Replace `'AnyKnownClass'` with `AnyKnownClass::class`
+* Remove `?>` at end of file
+* Make sure there is a newline at end of file
 
 ## Example diffs
 ```
