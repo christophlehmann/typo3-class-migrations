@@ -62,12 +62,12 @@ class classMigration {
 
 				// Replace other class occurences
 				// Use whitespace not to match tslib_fe in $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']
-				$search = "/ $class/";
-				$replacement = " " . $classData['fullName'];
+				$search = "/(\(|\s|\n)$class/";
+				$replacement = "$1" . $classData['fullName'];
 				$content = preg_replace($search, $replacement, $content);
 
-				// Remove double slashes
-				$content = str_replace('\\' . $replacement, $replacement, $content);
+				// Remove double slashes in front of class
+				$content = str_replace('\\' . $classData['fullName'], $classData['fullName'], $content);
 
 				foreach ($this->otherReplacements as $search => $replacement) {
 					$content = str_replace($search, $replacement, $content);
@@ -77,7 +77,7 @@ class classMigration {
 			file_put_contents($file, $content);
 		}
 	}
-
+	
 	protected function buildFileList($paths) {
 		$files = [];
 		foreach ($paths as $path) {
