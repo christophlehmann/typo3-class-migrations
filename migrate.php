@@ -74,10 +74,13 @@ class classMigration {
 				}
 			}
 
+			// Remove PHP closing tag and multiple newline at end of file
+			$content = preg_replace('/(\n+)?\?>(\n+)?$/', PHP_EOL, $content);
+
 			file_put_contents($file, $content);
 		}
 	}
-	
+
 	protected function buildFileList($paths) {
 		$files = [];
 		foreach ($paths as $path) {
