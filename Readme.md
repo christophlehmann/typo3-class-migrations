@@ -22,8 +22,8 @@
 ```
 
 ```
--$another = $this->objectManater->create('AnyKnownClass')
-+$another = $this->objectManater->get(AnyKnownClass::class)
+-$another = $this->objectManager->create('AnyKnownClass')
++$another = $this->objectManager->get(AnyKnownClass::class)
 ```
 
 ## Usage
