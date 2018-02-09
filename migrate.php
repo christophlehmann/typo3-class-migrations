@@ -17,7 +17,7 @@ class classMigration {
 		$files = $this->buildFileList($paths);
 		$classList = $this->buildTxClassList($files);
 
-		foreach (file('old-classes.txt', FILE_IGNORE_NEW_LINES) as $line) {
+		foreach (file(dirname(__FILE__) . '/old-classes.txt', FILE_IGNORE_NEW_LINES) as $line) {
 			if (strpos($line, '#') !== false) {
 				continue;
 			}
@@ -25,7 +25,7 @@ class classMigration {
 			$classList[$pieces[0]] = ['fullName' => $pieces[1]];
 		};
 
-		foreach (file('other-replacements.txt', FILE_IGNORE_NEW_LINES) as $line) {
+		foreach (file(dirname(__FILE__) . '/other-replacements.txt', FILE_IGNORE_NEW_LINES) as $line) {
 			if (strpos($line, '#') !== false) {
 				continue;
 			}
